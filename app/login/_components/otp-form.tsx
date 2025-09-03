@@ -60,7 +60,7 @@ export function OTPForm() {
     return { data };
   };
 
-  function onSubmit(_formData: z.infer<typeof FormSchema>) {
+  function onSubmit(formData: z.infer<typeof FormSchema>) {
     const promise = handleSubmit();
     toast.promise(promise, {
       loading: "Verifying OTP...",
@@ -91,7 +91,8 @@ export function OTPForm() {
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-2xl">Verification</h1>
             <p className="text-sm text-center text-secondary-foreground">
-              Please enter the verification code below.
+              Please enter the verification code below. This is a mock app and
+              any value will work here.
             </p>
           </div>
           <div className="space-y-5">
@@ -143,9 +144,6 @@ export function OTPForm() {
                 disabled={loading || isPending}
               >
                 {label()}
-                <kbd className="pointer-events-none ml-2 inline-flex h-5 select-none items-center gap-1 rounded px-1.5 bg-white/20  font-mono font-medium">
-                  <CornerDownRight size={15} className="opacity-80" />
-                </kbd>
               </Button>
               <button
                 className="flex items-center gap-2 pr-5 text-sm hover:underline underline-offset-4"

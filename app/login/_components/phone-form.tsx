@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useQueryState } from "nuqs";
-import { CornerDownRight } from "lucide-react";
 
 const FormSchema = z.object({
   phonenumber: z
@@ -77,9 +76,6 @@ export function PhoneForm() {
           />
           <Button size="lg" className="w-full" type="submit">
             Continue
-            <kbd className="pointer-events-none ml-2 inline-flex h-5 select-none items-center gap-1 rounded px-1.5 bg-white/20  font-mono font-medium">
-              <CornerDownRight size={15} className="opacity-80" />
-            </kbd>
           </Button>
         </form>
       </Form>

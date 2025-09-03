@@ -28,9 +28,7 @@ export async function GET(request: Request) {
     /*
      * Finally we are fetching the font file from the public directory.
      */
-    const baseUrl = process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : new URL(request.url).origin;
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
 
     const inter = fetch(new URL("/assets/inter/regular.ttf", baseUrl)).then(
       (res) => res.arrayBuffer(),

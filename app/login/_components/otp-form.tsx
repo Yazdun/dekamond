@@ -20,12 +20,12 @@ import { toast } from "sonner";
 import { useQueryState } from "nuqs";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { CornerDownRight, MoveLeft } from "lucide-react";
+import { MoveLeft } from "lucide-react";
 import { handleLogin } from "./action";
 
 const FormSchema = z.object({
-  token: z.string().min(6, {
-    message: "Your one-time password must be 6 characters.",
+  token: z.string().min(4, {
+    message: "Your one-time password must be 4 characters.",
   }),
 });
 
@@ -86,16 +86,16 @@ export function OTPForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="p-10 space-y-10 border rounded-md border-border/50"
+          className="md:p-10 space-y-10 md:border rounded-md border-border/50"
         >
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-2xl">Verification</h1>
             <p className="text-sm text-center text-secondary-foreground">
               Please enter the verification code below. This is a mock app and
-              any value will work here.
+              any value will work here
             </p>
           </div>
-          <div className="space-y-5">
+          <div className="flex flex-col gap-5 items-center">
             <FormField
               control={form.control}
               name="token"
@@ -104,7 +104,7 @@ export function OTPForm() {
                   <FormControl>
                     <InputOTP
                       autoFocus
-                      maxLength={6}
+                      maxLength={4}
                       {...field}
                       onComplete={form.handleSubmit(onSubmit)}
                     >
@@ -123,12 +123,6 @@ export function OTPForm() {
                       <InputOTPGroup>
                         <InputOTPSlot className="w-[54px] h-[54px]" index={3} />
                       </InputOTPGroup>
-                      <InputOTPGroup>
-                        <InputOTPSlot className="w-[54px] h-[54px]" index={4} />
-                      </InputOTPGroup>
-                      <InputOTPGroup>
-                        <InputOTPSlot className="w-[54px] h-[54px]" index={5} />
-                      </InputOTPGroup>
                     </InputOTP>
                   </FormControl>
                   <FormMessage />
@@ -136,7 +130,7 @@ export function OTPForm() {
               )}
             />
 
-            <div className="flex flex-col items-center gap-5">
+            <div className="flex flex-col items-center gap-5 w-full">
               <Button
                 className="flex items-center w-full gap-1"
                 size="lg"

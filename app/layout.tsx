@@ -4,6 +4,9 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ModeToggle } from "@/components/mode-toggle";
+import { Button } from "@/components/ui/button";
+import { Github } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +41,14 @@ export default function RootLayout({
         >
           <NuqsAdapter>
             <Toaster />
+            <div className="fixed flex items-center gap-2 right-5 top-5">
+              <Button size="icon" asChild variant="outline">
+                <a href="https://github.com/Yazdun/dekamond" target="_blank">
+                  <Github size={15} />
+                </a>
+              </Button>
+              <ModeToggle />
+            </div>
             {children}
           </NuqsAdapter>
         </ThemeProvider>

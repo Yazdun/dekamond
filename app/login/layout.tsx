@@ -14,12 +14,5 @@ export default async function Layout({
     redirect("/dashboard");
   }
 
-  return (
-    <div>
-      <div className="fixed right-5 top-5">
-        <ModeToggle />
-      </div>
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }

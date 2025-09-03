@@ -5,7 +5,7 @@ import { Mail, Phone, User2 } from "lucide-react";
 
 export function Profile({ data }: { data: User }) {
   return (
-    <div className="p-10 border border-border/50 rounded-md">
+    <div className="md:p-10 p-5 border border-border/50 rounded-md">
       <div className="flex items-start gap-5">
         <Avatar className="w-15 h-15">
           <AvatarImage src={data.picture ?? ""} />
@@ -21,7 +21,9 @@ export function Profile({ data }: { data: User }) {
           </li>
           <li className="flex items-center gap-1">
             <Mail size={18} />
-            {data.email}
+            <span className="truncate md:max-w-full max-w-[200px]">
+              {data.email}
+            </span>
           </li>
           <li className="flex items-center gap-1">
             <Phone size={18} />

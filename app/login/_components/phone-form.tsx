@@ -50,7 +50,7 @@ export function PhoneForm() {
   }
 
   return (
-    <div className="p-10 space-y-10 border rounded-md border-border/50">
+    <div className="md:p-10 space-y-10 md:border rounded-md md:border-border/50">
       <div className="text-center grid gap-1">
         <h1 className="text-2xl">Let&apos;s get started</h1>
         <p className="text-sm text-secondary-foreground">

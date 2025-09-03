@@ -24,7 +24,7 @@ const FormSchema = z.object({
       (value) => {
         const cleaned = value.replace(/[\s-]/g, "");
 
-        const pattern = /(^(0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/;
+        const pattern = new RegExp("^(\\+98|0)?9\\d{9}$");
 
         return pattern.test(cleaned);
       },

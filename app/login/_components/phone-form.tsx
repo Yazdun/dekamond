@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useQueryState } from "nuqs";
+import { CornerDownRight } from "lucide-react";
 
 const FormSchema = z.object({
   phonenumber: z
@@ -23,7 +24,7 @@ const FormSchema = z.object({
     .refine(
       (value) => {
         const cleaned = value.replace(/[\s-]/g, "");
-        // const pattern = /^(0?9|\+?989|0099)\d{9}$/;
+
         const pattern =
           /(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/;
 
@@ -50,10 +51,10 @@ export function PhoneForm() {
   }
 
   return (
-    <div className="p-10 grid gap-5 border rounded-lg">
+    <div className="p-10 space-y-10 border rounded-md border-border/50">
       <div className="text-center grid gap-1">
-        <h1 className="text-2xl font-semibold">Let&apos;s get started</h1>
-        <p>
+        <h1 className="text-2xl">Let&apos;s get started</h1>
+        <p className="text-sm text-secondary-foreground">
           Type in your phonenumber, and we’ll send you a confirmation code to
           confirm your login.
         </p>
@@ -76,6 +77,9 @@ export function PhoneForm() {
           />
           <Button size="lg" className="w-full" type="submit">
             Continue
+            <kbd className="pointer-events-none ml-2 inline-flex h-5 select-none items-center gap-1 rounded px-1.5 bg-white/20  font-mono font-medium">
+              <CornerDownRight size={15} className="opacity-80" />
+            </kbd>
           </Button>
         </form>
       </Form>

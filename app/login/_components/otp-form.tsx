@@ -85,8 +85,7 @@ export function OTPForm() {
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-2xl">Verification</h1>
             <p className="text-sm text-center text-secondary-foreground">
-              If you have access, we have sent a code to{" "}
-              <strong>{phonenumber}</strong>. Enter it below.
+              Please enter the verification code below.
             </p>
           </div>
           <div className="space-y-5">
@@ -145,6 +144,7 @@ export function OTPForm() {
               <button
                 className="flex items-center gap-2 pr-5 text-sm hover:underline underline-offset-4"
                 onClick={() => setPhonenumber(null)}
+                type="button"
               >
                 <MoveLeft size={14} />
                 Back

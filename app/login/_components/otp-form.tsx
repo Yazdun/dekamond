@@ -54,8 +54,11 @@ export function OTPForm() {
     const { data, error } = await action();
 
     if (error) {
+      setLoading(false);
       throw new Error("Failed to authenticate");
     }
+
+    setLoading(false);
 
     return { data };
   };

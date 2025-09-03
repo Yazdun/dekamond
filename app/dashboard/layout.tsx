@@ -1,3 +1,5 @@
+import { verifyAuth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function Layout({
@@ -5,5 +7,11 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
+  const { error } = await verifyAuth();
+
+  if (error) {
+    redirect("/login");
+  }
+
   return <div>{children}</div>;
 }

@@ -15,8 +15,7 @@ export function Profile({ data }: { data: User }) {
           <li className="flex items-center gap-1">
             <User2 size={18} />
             <p>
-              <span>{data.name.first}</span>
-              <span>{data.name.last}</span>
+              <span>{data.name.first}</span> <span>{data.name.last}</span>
             </p>
           </li>
           <li className="flex items-center gap-1">

@@ -1,4 +1,3 @@
-import { ModeToggle } from "@/components/mode-toggle";
 import { verifyAuth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import React from "react";

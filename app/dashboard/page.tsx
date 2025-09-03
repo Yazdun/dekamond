@@ -2,6 +2,13 @@ import { verifyAuth } from "@/lib/auth";
 import React from "react";
 import { Profile } from "./_components/profile";
 import { LogoutButton } from "./_components/logout";
+import { Metadata } from "next";
+import { OpenGraph } from "@/lib/og";
+
+export const metadata: Metadata = {
+  ...OpenGraph,
+  title: "Dekamond | Dashboard",
+};
 
 export default async function Page() {
   const { data, error } = await verifyAuth();

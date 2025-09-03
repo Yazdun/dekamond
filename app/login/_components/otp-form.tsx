@@ -21,6 +21,7 @@ import { useQueryState } from "nuqs";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { CornerDownRight, MoveLeft } from "lucide-react";
+import { handleLogin } from "./action";
 
 const FormSchema = z.object({
   token: z.string().min(6, {
@@ -31,8 +32,10 @@ const FormSchema = z.object({
 export function OTPForm() {
   const [phonenumber, setPhonenumber] = useQueryState("phonenumber");
 
+  const action = handleLogin.bind(null, { phonenumber });
+
   const [to] = useQueryState("to", {
-    defaultValue: "/workspace/clients",
+    defaultValue: "/dashboard",
   });
 
   const [loading, setLoading] = useState(false);
@@ -46,16 +49,19 @@ export function OTPForm() {
     },
   });
 
-  const handleLogin = async ({ token }: { token: string }) => {
+  const handleSubmit = async () => {
     setLoading(true);
+    const { data, error } = await action();
 
-    setLoading(false);
+    if (error) {
+      throw new Error("Failed to authenticate");
+    }
+
+    return { data };
   };
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    const promise = handleLogin({
-      token: data.token,
-    });
+  function onSubmit(formData: z.infer<typeof FormSchema>) {
+    const promise = handleSubmit();
     toast.promise(promise, {
       loading: "Verifying OTP...",
       success: () => {

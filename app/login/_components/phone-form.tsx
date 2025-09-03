@@ -46,8 +46,8 @@ export function PhoneForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    setPhonenumber(data.phonenumber);
+  async function onSubmit(formData: z.infer<typeof FormSchema>) {
+    setPhonenumber(formData.phonenumber);
   }
 
   return (

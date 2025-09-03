@@ -34,7 +34,7 @@ export async function verifyAuth(): Promise<TResponseOverload<User>> {
       error: null,
     };
   } catch (error) {
-    console.error("JWT verification failed:", error);
+    console.log("JWT verification failed:", error);
     return { data: null, error: { message: "JWT verification failed." } };
   }
 }

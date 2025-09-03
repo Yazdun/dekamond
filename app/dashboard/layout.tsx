@@ -13,5 +13,5 @@ export default async function Layout({
     redirect("/login");
   }
 
-  return <div>{children}</div>;
+  return <div className="overflow-x-hidden">{children}</div>;
 }

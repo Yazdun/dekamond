@@ -6,6 +6,13 @@ import { AUTH_COOKIE_NAME } from "./constants";
 
 export type User = {
   phonenumber: string;
+  name: {
+    first: string;
+    last: string;
+    full: string;
+  };
+  email: string;
+  picture: string;
   iat?: number;
   exp?: number;
 };

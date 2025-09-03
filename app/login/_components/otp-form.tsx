@@ -60,7 +60,7 @@ export function OTPForm() {
     return { data };
   };
 
-  function onSubmit(formData: z.infer<typeof FormSchema>) {
+  function onSubmit(_formData: z.infer<typeof FormSchema>) {
     const promise = handleSubmit();
     toast.promise(promise, {
       loading: "Verifying OTP...",

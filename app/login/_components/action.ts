@@ -15,24 +15,57 @@ export async function handleLogin(payload: {
     };
   }
 
-  const cookieStore = await cookies();
+  try {
+    // Fetch user data from randomuser.me API
+    const response = await fetch("https://randomuser.me/api/?results=1&nat=us");
 
-  const JWT_SECRET = process.env.JWT_SECRET!;
-  const token = jwt.sign(
-    {
+    if (!response.ok) {
+      return {
+        data: null,
+        error: { message: "Failed to fetch user data" },
+      };
+    }
+
+    const userData = await response.json();
+    const user = userData.results[0];
+
+    // Extract user information
+    const userInfo = {
       phonenumber: payload.phonenumber,
-      iat: Math.floor(Date.now() / 1000),
-      exp: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60,
-    },
-    JWT_SECRET,
-  );
+      name: {
+        first: user.name.first,
+        last: user.name.last,
+        full: `${user.name.first} ${user.name.last}`,
+      },
+      email: user.email,
+      picture: user.picture.large,
+    };
 
-  cookieStore.set(AUTH_COOKIE_NAME, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    maxAge: 7 * 24 * 60 * 60,
-    path: "/",
-  });
+    const cookieStore = await cookies();
 
-  return { data: { phonenumber: payload.phonenumber }, error: null };
+    const JWT_SECRET = process.env.JWT_SECRET!;
+    const token = jwt.sign(
+      {
+        ...userInfo,
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60,
+      },
+      JWT_SECRET,
+    );
+
+    cookieStore.set(AUTH_COOKIE_NAME, token, {
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60,
+      path: "/",
+    });
+
+    return { data: userInfo, error: null };
+  } catch (error) {
+    console.error("Error in handleLogin:", error);
+    return {
+      data: null,
+      error: { message: "An error occurred during login" },
+    };
+  }
 }
